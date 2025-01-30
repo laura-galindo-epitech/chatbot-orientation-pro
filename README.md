@@ -1,4 +1,4 @@
 README.md
 
-Scrapping concernant le site de France Travail
+Données converties (EXCEL-to JSON) et scrappées issues de France Travail
 
