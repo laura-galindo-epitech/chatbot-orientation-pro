@@ -52,8 +52,7 @@ if __name__ == "__main__":
         save_to_json(datasets, 'datasets.json')
 
         # Define filter themes
-        target_themes = {"formations", "structures d'enseignement", "certifications", 
-                         "fiches", "métiers", "options", "spécialités de baccalauréat", "langues"}
+        target_themes = {"formations", "structures d'enseignement", "certifications", "fiches", "métiers", "options", "spécialités de baccalauréat", "langues"}
 
         # Filter the datasets
         filtered_datasets = []
