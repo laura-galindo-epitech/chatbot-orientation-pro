@@ -1,2 +1,4 @@
-# chatbot-orientation-pro
-Epitech Digital School Bootcamp Chatbot IA
+README.md
+
+Données converties (EXCEL-to JSON) et scrappées issues de France Travail
+
