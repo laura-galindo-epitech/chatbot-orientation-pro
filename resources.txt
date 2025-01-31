@@ -1,0 +1,4 @@
+- Transformer JSON en .txt : utiliser modèle Text2Text Generation de Hugging Face avec environ 7, GGUF
+- BDD vectorielle : https://python.langchain.com/docs/integrations/vectorstores/chroma/
+- Vectorisation (prendre petit Model Size) : https://huggingface.co/spaces/mteb/leaderboard
+- Serveur en local : https://github.com/ggerganov/llama.cpp
