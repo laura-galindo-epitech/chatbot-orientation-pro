@@ -15,4 +15,6 @@ Notre chatbot conseille des personnes sur leur orientation professionnelle, et l
 - https://www.data.gouv.fr/fr/
 - https://data.enseignementsup-recherche.gouv.fr/explore/dataset/fr-esr-parcoursup/information/
 - https://opendata.onisep.fr/
+    - https://opendata.onisep.fr/data/5fe0808a2da6f/2-ideo-fiches-metiers.htm
+    - https://opendata.onisep.fr/data/5fe07a9ecc960/2-ideo-fiches-formations.htm
 - https://candidat.francetravail.fr/offres/emploi
