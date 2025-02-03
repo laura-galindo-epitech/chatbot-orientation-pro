@@ -10,6 +10,13 @@ Notre projet cible l'orientation dans les études supérieures. Il est donc part
 
 Notre chatbot conseille des personnes sur leur orientation professionnelle, et les aide à préparer leur dossier de candidature.
 
+#### Auteurs
+- Marine FRUITIER (FruitierM, MarineFruitier)
+- Laura GALINDO (root, laura-enya-galindo, laura-galindo-epitech)
+- Hubert GILLOUARD (HubertGillouard)
+- Viktoriia REPA (Vktrp, Vktrp2)
+
+
 #### Sources
 
 - https://www.data.gouv.fr/fr/
