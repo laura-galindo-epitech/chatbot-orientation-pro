@@ -1,0 +1,478 @@
+[
+    {
+        "date": "09/01/2025",
+        "thème": "Salon du lycéen et de l’étudiant",
+        "organisateur": "L’Étudiant",
+        "ville": "Parc Expo — Rennes",
+        "durée": "3 jours"
+    },
+    {
+        "date": "10/01/2025",
+        "thème": "Salon du lycéen et de l’étudiant",
+        "organisateur": "L’Étudiant",
+        "ville": "Mégacité — Amiens",
+        "durée": "2 jours"
+    },
+    {
+        "date": "10/01/2025",
+        "thème": "Forum de l’Orientation et des métiers",
+        "organisateur": "Région Centre-Val de Loire",
+        "ville": "Parc des expositions — Tours",
+        "durée": "2 jours"
+    },
+    {
+        "date": "10/01/2025",
+        "thème": "Salon du lycéen et de l’étudiant",
+        "organisateur": "L’Étudiant",
+        "ville": "Parc des Expositions — Bordeaux",
+        "durée": "3 jours"
+    },
+    {
+        "date": "10/01/2025",
+        "thème": "Salon postbac",
+        "organisateur": "AEF",
+        "ville": "Grande Halle de la Villette — Paris",
+        "durée": "2 jours"
+    },
+    {
+        "date": "10/01/2025",
+        "thème": "Passerelle — Salon des lycéens et des étudiants",
+        "organisateur": "L’Étudiant",
+        "ville": "Quai Louis Prunier — La Rochelle",
+        "durée": "2 jours"
+    },
+    {
+        "date": "10/01/2025",
+        "thème": "Salon de L’Étudiant",
+        "organisateur": "L’Étudiant",
+        "ville": "Eurexpo — Lyon",
+        "durée": "3 jours"
+    },
+    {
+        "date": "10/01/2025",
+        "thème": "Salon de L’Étudiant",
+        "organisateur": "L’Étudiant",
+        "ville": "Parc des Expostions — Rouen",
+        "durée": "2 jours"
+    },
+    {
+        "date": "10/01/2025",
+        "thème": "Forum Post bac",
+        "organisateur": "L’Étudiant",
+        "ville": "Palais des Congrès et des Expositions — Valence",
+        "durée": "2 jours"
+    },
+    {
+        "date": "11/01/2025",
+        "thème": "Salon de L’Étudiant",
+        "organisateur": "L’Étudiant",
+        "ville": "Palais Neptune — Toulon",
+        "durée": "1 jour"
+    },
+    {
+        "date": "11/01/2025",
+        "thème": "Salon de la Poursuite d’Études et Masters",
+        "organisateur": "Studyrama",
+        "ville": "Palais des Congrès — Dijon",
+        "durée": "1 jour"
+    },
+    {
+        "date": "11/01/2025",
+        "thème": "Salon des Études Supérieures",
+        "organisateur": "Studyrama",
+        "ville": "Arena du Pays d’Aix — Aix-en-Provence",
+        "durée": "1 jour"
+    },
+    {
+        "date": "11/01/2025",
+        "thème": "Salon des Études Supérieures",
+        "organisateur": "Studyrama",
+        "ville": "Palais de la Musique et des Congrès — Strasbourg",
+        "durée": "1 jour"
+    },
+    {
+        "date": "11/01/2025",
+        "thème": "Salon des Formations du Numérique",
+        "organisateur": "Studyrama",
+        "ville": "Palais de la Musique et des Congrès — Strasbourg",
+        "durée": "1 jour"
+    },
+    {
+        "date": "11/01/2025",
+        "thème": "Salon Sup’Alternance et Apprentissage",
+        "organisateur": "Studyrama",
+        "ville": "Palais de la Musique et des Congrès — Strasbourg",
+        "durée": "1 jour"
+    },
+    {
+        "date": "11/01/2025",
+        "thème": "Salon Sup’Alternance et Apprentissage",
+        "organisateur": "Studyrama",
+        "ville": "Palais des Congrès — Dijon",
+        "durée": "1 jour"
+    },
+    {
+        "date": "11/01/2025",
+        "thème": "Le salon de l’enseignement supérieur",
+        "organisateur": "Infosup",
+        "ville": "MEETT — Toulouse",
+        "durée": "1 jour"
+    },
+    {
+        "date": "16/01/2025",
+        "thème": "Auversup",
+        "organisateur": "L’Étudiant",
+        "ville": "Grande Halle d’Auvergne — Clermont-Ferrand",
+        "durée": "3 jours"
+    },
+    {
+        "date": "16/01/2025",
+        "thème": "Salon du lycéen et de l’étudiant",
+        "organisateur": "L’Étudiant",
+        "ville": "Lille Grand Palais — Lille",
+        "durée": "3 jours"
+    },
+    {
+        "date": "16/01/2025",
+        "thème": "Infosup Agen : le salon des formations après Bac",
+        "organisateur": "Infosup Agen",
+        "ville": "Parc des Expositions — Agen",
+        "durée": "2 jours"
+    },
+    {
+        "date": "16/01/2025",
+        "thème": "Salon de l’enseignement supérieur",
+        "organisateur": "L’Étudiant",
+        "ville": "Parc des expositions — Montpellier",
+        "durée": "3 jours"
+    },
+    {
+        "date": "17/01/2025",
+        "thème": "Salon des Études Supérieures",
+        "organisateur": "Studyrama",
+        "ville": "Palais des Expositions — Nice",
+        "durée": "2 jours"
+    },
+    {
+        "date": "17/01/2025",
+        "thème": "Salon des Formations Internationales",
+        "organisateur": "Studyrama",
+        "ville": "Palais des Expositions — Nice",
+        "durée": "2 jours"
+    },
+    {
+        "date": "17/01/2025",
+        "thème": "Forum de l’Enseignement Supérieur et des Métiers",
+        "organisateur": "Le Forum 53",
+        "ville": "Espace Mayenne — Laval",
+        "durée": "2 jours"
+    },
+    {
+        "date": "17/01/2025",
+        "thème": "Salon Your Future",
+        "organisateur": "Your Future",
+        "ville": "Parc des Princes — Paris",
+        "durée": "2 jours"
+    },
+    {
+        "date": "17/01/2025",
+        "thème": "Salon de l’enseignement supérieur",
+        "organisateur": "Info’sup Bretagne Sud",
+        "ville": "Parc des expos Le Chorus — Vannes",
+        "durée": "2 jours"
+    },
+    {
+        "date": "17/01/2025",
+        "thème": "Salon de L’Étudiant",
+        "organisateur": "L’Étudiant",
+        "ville": "Parc Chanot — Marseille",
+        "durée": "2 jours"
+    },
+    {
+        "date": "17/01/2025",
+        "thème": "Salon du lycéen et de l’étudiant",
+        "organisateur": "L’Étudiant",
+        "ville": "Parc des expositions — les Arènes — Poitiers",
+        "durée": "2 jours"
+    },
+    {
+        "date": "17/01/2025",
+        "thème": "Formathèque 44",
+        "organisateur": "Studyrama",
+        "ville": "Parc des Expositions de la Beaujoire — Grand Palais — Nantes",
+        "durée": "2 jours"
+    },
+    {
+        "date": "17/01/2025",
+        "thème": "Forum de l’Orientation et des métiers",
+        "organisateur": "Région Centre-Val de Loire",
+        "ville": "La Salle du Jeu de Paume — Blois",
+        "durée": "2 jours"
+    },
+    {
+        "date": "18/01/2025",
+        "thème": "Le forum de l’apprentissage et de la formation en alternance",
+        "organisateur": "FOROMAP",
+        "ville": "Parc de Penfeld — Brest",
+        "durée": "1 jour"
+    },
+    {
+        "date": "18/01/2025",
+        "thème": "Salon de la Poursuite d’Études et Masters",
+        "organisateur": "Studyrama",
+        "ville": "Centre Prouvé — Nancy",
+        "durée": "1 jour"
+    },
+    {
+        "date": "18/01/2025",
+        "thème": "Salon des Études Supérieures et de l’Alternance",
+        "organisateur": "Studyrama",
+        "ville": "Centre des Congrès — Reims",
+        "durée": "1 jour"
+    },
+    {
+        "date": "18/01/2025",
+        "thème": "Forum de l’enseignement supérieur et des métiers",
+        "organisateur": "La Fab’Academy",
+        "ville": "Espace Mayenne — Laval",
+        "durée": "2 jours"
+    },
+    {
+        "date": "18/01/2025",
+        "thème": "Salon de l’orientation et de l’évolution professionnelle",
+        "organisateur": "ADN Avenir et Mulhouse Alsace Agglomération",
+        "ville": "Parc des Expositions — Mulhouse",
+        "durée": "1 jour"
+    },
+    {
+        "date": "18/01/2025",
+        "thème": "Salon de L’Étudiant",
+        "organisateur": "L’Étudiant",
+        "ville": "Parc des expositions Micropolis — Besançon",
+        "durée": "1 jour"
+    },
+    {
+        "date": "18/01/2025",
+        "thème": "Salon de L’Étudiant",
+        "organisateur": "L’Étudiant",
+        "ville": "Parc des Expositions — SAVOIEXPO — Chambéry",
+        "durée": "1 jour"
+    },
+    {
+        "date": "18/01/2025",
+        "thème": "Salon masters et mastères spécialisés et premier emploi, en France et à l’international",
+        "organisateur": "L’Étudiant",
+        "ville": "Palais des Congrès — Paris",
+        "durée": "1 jour"
+    },
+    {
+        "date": "18/01/2025",
+        "thème": "Salon de L’Étudiant",
+        "organisateur": "L’Étudiant",
+        "ville": "Vélodrome — Saint-Quentin-en-Yvelines",
+        "durée": "1 jour"
+    },
+    {
+        "date": "18/01/2025",
+        "thème": "Salon de L’Étudiant",
+        "organisateur": "L’Étudiant",
+        "ville": "Cergy Paris Université — Cergy-Pontoise",
+        "durée": "1 jour"
+    },
+    {
+        "date": "18/01/2025",
+        "thème": "Salon des Formations Automobiles, Aéronautiques, Ferroviaires et Navales et Supply Chain",
+        "organisateur": "Studyrama",
+        "ville": "Espace Champerret — Paris",
+        "durée": "1 jour"
+    },
+    {
+        "date": "18/01/2025",
+        "thème": "Salon des Formations du Sport et de la Diététique",
+        "organisateur": "Studyrama",
+        "ville": "Espace Champerret — Paris",
+        "durée": "1 jour"
+    },
+    {
+        "date": "18/01/2025",
+        "thème": "Salon des Formations en Agroalimentaire, Transition Écologique & Énergie",
+        "organisateur": "Studyrama",
+        "ville": "Espace Champerret — Paris",
+        "durée": "1 jour"
+    },
+    {
+        "date": "18/01/2025",
+        "thème": "Salon des Formations et Métiers en Défense et Cybersécurité",
+        "organisateur": "Studyrama",
+        "ville": "Espace Champerret — Paris",
+        "durée": "1 jour"
+    },
+    {
+        "date": "18/01/2025",
+        "thème": "Salon des Formations Gaming et Coding",
+        "organisateur": "Studyrama",
+        "ville": "Espace Champerret — Paris",
+        "durée": "1 jour"
+    },
+    {
+        "date": "18/01/2025",
+        "thème": "Salon des Lycéens et des Études Supérieures",
+        "organisateur": "Studyrama",
+        "ville": "Palais des Congrès — Ajaccio",
+        "durée": "1 jour"
+    },
+    {
+        "date": "22/01/2025",
+        "thème": "Forum des métiers et des formations",
+        "organisateur": "Parcours Métier et Région Normandie",
+        "ville": "Grande Halle de La Cité de la Mer — Cherbourg — en — Cotentin",
+        "durée": "2 jours"
+    },
+    {
+        "date": "23/01/2025",
+        "thème": "Le salon Finistérien de\n\nl’orientation et de l’enseignement supérieur",
+        "organisateur": "Azimut",
+        "ville": "Parc de Penfeld — Brest",
+        "durée": "3 jours"
+    },
+    {
+        "date": "23/01/2025",
+        "thème": "Forum de l’Orientation et des métiers",
+        "organisateur": "Région Centre-Val de Loire",
+        "ville": "Hall des expositions de Belle Isle — Châteauroux",
+        "durée": "2 jours"
+    },
+    {
+        "date": "24/01/2025",
+        "thème": "La Nuit de l’Orientation",
+        "organisateur": "CCI Maine-et-Loire",
+        "ville": "Centre Pierre Cointreau — Angers",
+        "durée": "1 jour"
+    },
+    {
+        "date": "24/01/2025",
+        "thème": "Forum de l’Orientation et des métiers de Chartres",
+        "organisateur": "Région Centre-Val de Loire",
+        "ville": "Illiade (D32) — Chartres",
+        "durée": "2 jours"
+    },
+    {
+        "date": "24/01/2025",
+        "thème": "Salon Formation Emploi",
+        "organisateur": "CCI Alsace Eurométropole",
+        "ville": "Parc Expo — Colmar",
+        "durée": "2 jours"
+    },
+    {
+        "date": "25/01/2025",
+        "thème": "Salon des Études Supérieures",
+        "organisateur": "Studyrama",
+        "ville": "la Maison des Associations — Bayonne",
+        "durée": "1 jour"
+    },
+    {
+        "date": "25/01/2025",
+        "thème": "Salon des masters et mastères spécialisés (SAMS)",
+        "organisateur": "Le Groupe Le Monde",
+        "ville": "Paris Montreuil Expo",
+        "durée": "1 jour"
+    },
+    {
+        "date": "25/01/2025",
+        "thème": "Salon des BTS",
+        "organisateur": "Studyrama",
+        "ville": "Espace Champerret — Paris",
+        "durée": "1 jour"
+    },
+    {
+        "date": "25/01/2025",
+        "thème": "Salon des Études Supérieures",
+        "organisateur": "Studyrama",
+        "ville": "Centre de Congrès Robert Schuman — Metz",
+        "durée": "1 jour"
+    },
+    {
+        "date": "25/01/2025",
+        "thème": "Salon de l’Étudiant formations et recrutement en alternance",
+        "organisateur": "L’Étudiant",
+        "ville": "Parc des Expositions — Caen",
+        "durée": "1 jour"
+    },
+    {
+        "date": "25/01/2025",
+        "thème": "Salon des Études Supérieures",
+        "organisateur": "Studyrama",
+        "ville": "Espace Champerret — Paris",
+        "durée": "1 jour"
+    },
+    {
+        "date": "25/01/2025",
+        "thème": "Salon Sup’Alternance et Apprentissage",
+        "organisateur": "Studyrama",
+        "ville": "Espace Champerret — Paris",
+        "durée": "1 jour"
+    },
+    {
+        "date": "25/01/2025",
+        "thème": "Salon de L’Étudiant",
+        "organisateur": "L’Étudiant",
+        "ville": "Parc des Expositions — Dijon",
+        "durée": "1 jour"
+    },
+    {
+        "date": "25/01/2025",
+        "thème": "Salon des étudiants",
+        "organisateur": "L’Étudiant",
+        "ville": "Les Arènes — Évry-Courcouronnes",
+        "durée": "1 jour"
+    },
+    {
+        "date": "25/01/2025",
+        "thème": "Salon des Études Supérieures",
+        "organisateur": "Studyrama",
+        "ville": "l’Arcadium — Annecy",
+        "durée": "1 jour"
+    },
+    {
+        "date": "25/01/2025",
+        "thème": "Salon Sup’Alternance et Apprentissage",
+        "organisateur": "Studyrama",
+        "ville": "la Maison des Associations — Bayonne",
+        "durée": "1 jour"
+    },
+    {
+        "date": "25/01/2025",
+        "thème": "Salon Sup’Alternance et Apprentissage",
+        "organisateur": "Studyrama",
+        "ville": "Centre des Congrès Robert Schuman — Metz",
+        "durée": "1 jour"
+    },
+    {
+        "date": "30/01/2025",
+        "thème": "Forum des études supérieures et des métiers",
+        "organisateur": "L’Étudiant",
+        "ville": "Parc des Expositions — Perpignan",
+        "durée": "1 jour"
+    },
+    {
+        "date": "30/01/2025",
+        "thème": "Le salon régional de l’Orientation et des Métiers",
+        "organisateur": "L’Agence de l’Orientation et des Métiers de Normandie",
+        "ville": "Parc des expositions — Rouen",
+        "durée": "3 jours"
+    },
+    {
+        "date": "31/01/2025",
+        "thème": "Salon de L’Étudiant",
+        "organisateur": "L’Étudiant",
+        "ville": "Porte de Versailles — Paris",
+        "durée": "3 jours"
+    },
+    {
+        "date": "31/01/2025",
+        "thème": "Forum de l’Orientation et des métiers",
+        "organisateur": "Région Centre-Val de Loire",
+        "ville": "Pavillon d’Auron — Bourges",
+        "durée": "2 jours"
+    }
+]
