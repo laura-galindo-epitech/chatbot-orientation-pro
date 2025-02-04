@@ -1,228 +1,222 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot d'Orientation - Boule de Cristal</title>
+    <title>CrystalBot</title>
     <style>
-        /* Global settings */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
             margin: 0;
             padding: 0;
-            background-color: #1d1d1d; /* Fond sombre mais pas trop agressif */
-            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
-            overflow: hidden;
-            transition: background-color 0.3s, color 0.3s; /* Transition pour changer de thème */
+            height: 100vh;
+            flex-direction: column;
         }
 
-        /* Container for the chatbot */
-        #chat-container {
-            width: 90%;
-            max-width: 700px;
-            background: rgba(255, 255, 255, 0.1); /* Fond sombre plus doux */
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
-            text-align: center;
-            transition: background 0.3s;
-        }
-
-        /* Header of the chatbot */
         h1 {
-            color: #fff;
-            font-size: 32px;
-            margin-bottom: 20px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            color: #6a4c9c;
+            text-align: center;
+            font-size: 2.5em;
+            margin-top: 30px;
+            font-weight: 600;
         }
 
-        /* Image section */
-        .image-container {
-            margin-bottom: 30px;
-        }
-
-        .image-container img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-        }
-
-        /* Chatbox styling */
-        #chatbox {
-            background: rgba(255, 255, 255, 0.2);
-            height: 350px;
-            overflow-y: scroll;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
-            transition: background 0.3s;
-        }
-
-        /* Styling for user and bot messages */
-        .message {
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 12px;
-            max-width: 80%;
-            margin-left: auto;
-            margin-right: auto;
-            font-size: 16px;
-            line-height: 1.5;
-            background-color: #5e2a84; /* Violet doux */
-        }
-
-        .user-message {
-            background-color: #d8a7e4; /* Violet très pâle */
-            color: #4a006e;
-            text-align: right;
-        }
-
-        .bot-message {
-            background-color: #e6e6e6; /* Gris clair */
-            color: #333;
+        .welcome-message {
             text-align: left;
+            color: #6a4c9c;
+            font-size: 1.2em;
+            margin-left: 25px;
+            margin-bottom: 20px;
         }
 
-        /* Input field container */
-        #input-container {
+        .chat-container {
+            width: 100%;
+            max-width: 700px;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+        }
+
+        .message {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            max-width: 80%;
+        }
+
+        .message.bot {
+            background-color: #e8e8e8;
+            border-radius: 20px;
+            padding: 12px 18px;
+            margin-right: 15px;
+            font-size: 1.1em;
+        }
+
+        .message.user {
+            background-color: #6a4c9c;
+            color: white;
+            border-radius: 20px;
+            padding: 12px 18px;
+            margin-left: 15px;
+            font-size: 1.1em;
+        }
+
+        .message img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+        }
+
+        form {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
-        #input-box {
-            width: 75%;
-            padding: 12px;
-            font-size: 16px;
-            border-radius: 25px;
-            border: 1px solid #7a1e8f;
-            background-color: #f9f9f9;
-            color: #333;
+        input[type="text"] {
+            width: 80%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            font-size: 1.2em;
+            outline: none;
+            transition: border 0.3s ease;
         }
 
-        #send-btn {
-            padding: 12px 20px;
-            font-size: 16px;
-            background-color: #7a1e8f; /* Violet doux */
+        input[type="text"]:focus {
+            border: 2px solid #6a4c9c;
+        }
+
+        button {
+            padding: 15px 25px;
+            background-color: #6a4c9c;
             color: white;
             border: none;
-            border-radius: 25px;
+            border-radius: 50px;
             cursor: pointer;
+            font-size: 1.2em;
             transition: background-color 0.3s ease;
         }
 
-        #send-btn:hover {
-            background-color: #9b57c3; /* Violet un peu plus clair */
+        button:hover {
+            background-color: #5a3b8b;
         }
 
-        /* Light theme styles */
-        .light-theme {
-            background-color: #f1f1f1; /* Fond clair, doux pour les yeux */
-            color: #333;
+        .loading {
+            text-align: center;
+            font-size: 1.2em;
+            color: #6a4c9c;
         }
 
-        .light-theme #chat-container {
-            background: rgba(255, 255, 255, 0.7);
+        .typing-indicator {
+            font-size: 1.1em;
+            color: #6a4c9c;
+            font-style: italic;
         }
 
-        .light-theme #chatbox {
-            background: rgba(255, 255, 255, 0.9);
+        .message.user img {
+            margin-right: 10px;
         }
 
-        .light-theme .message {
-            background-color: #9b57c3; /* Violet plus doux */
-            color: white;
-        }
-
-        /* Button for changing theme */
-        #theme-toggle-btn {
-            background-color: #7a1e8f;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            font-size: 14px;
-            border-radius: 25px;
-            cursor: pointer;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-
-        #theme-toggle-btn:hover {
-            background-color: #9b57c3;
-        }
     </style>
 </head>
 <body>
-    <button id="theme-toggle-btn">Changer le thème</button>
-    <div id="chat-container">
-        <h1>Chatbot d'Orientation</h1>
-        <div class="image-container">
-            <img src="/static/R.jpg" alt="Logo" />
-        </div>
-        <div id="chatbox"></div>
-        <div id="input-container">
-            <input type="text" id="input-box" placeholder="Posez une question..." />
-            <button id="send-btn">Envoyer</button>
-        </div>
+
+    <h1>Bienvenue sur CrystalBot</h1>
+    <div class="welcome-message">
+        Dis-moi comment je peux t’aider à voir ton avenir professionnel
     </div>
 
+    <div class="chat-container" id="chatContainer">
+        <!-- Chat messages will be appended here -->
+    </div>
+
+    <form id="questionForm">
+        <input type="text" id="question" name="question" placeholder="Posez une question..." required>
+        <button type="submit">Envoyer</button>
+    </form>
+
+    <div id="response" class="loading"></div>
+
     <script>
-        // Fonction pour basculer entre les thèmes clair et sombre
-        document.getElementById('theme-toggle-btn').addEventListener('click', function() {
-            document.body.classList.toggle('light-theme');
-            const button = document.getElementById('theme-toggle-btn');
-            if (document.body.classList.contains('light-theme')) {
-                button.innerText = 'Passer en thème sombre';
-            } else {
-                button.innerText = 'Changer le thème';
-            }
-        });
+        const form = document.getElementById('questionForm');
+        const chatContainer = document.getElementById('chatContainer');
+        const responseDiv = document.getElementById('response');
 
-        document.getElementById('send-btn').addEventListener('click', async function() {
-            const inputBox = document.getElementById('input-box');
-            const userMessage = inputBox.value.trim();
-            if (userMessage) {
-                displayMessage(userMessage, 'user');
-                inputBox.value = '';
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const question = document.getElementById('question').value;
 
-                const response = await sendMessageToAPI(userMessage);
-                if (response.results) {
-                    response.results.forEach(item => {
-                        displayMessage(`${item['libellé métier']}: ${item.description}`, 'bot');
-                    });
-                } else {
-                    displayMessage(response.message, 'bot');
+            // Afficher le message de l'utilisateur
+            chatContainer.innerHTML += `
+                <div class="message user">
+                    <img src="R.jpg" alt="User">
+                    ${question}
+                </div>`;
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            responseDiv.innerHTML = '<div class="typing-indicator">Le chatbot est en train de réfléchir...</div>';
+
+            try {
+                const response = await fetch('/analyze_offer/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ question })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erreur lors de la récupération des données');
                 }
+
+                const result = await response.json();
+                responseDiv.innerHTML = '';
+
+                if (result.results) {
+                    result.results.forEach(item => {
+                        chatContainer.innerHTML += `
+                            <div class="message bot">
+                                <img src="R.jpg" alt="Bot">
+                                <strong>${item['libellé métier']}</strong>: ${item.description}
+                            </div>`;
+                    });
+                } else if (result.message === "Aide à la rédaction") {
+                    chatContainer.innerHTML += `
+                        <div class="message bot">
+                            <img src="R.jpg" alt="Bot">
+                            <strong>Conseils pour votre lettre de motivation :</strong>
+                            N'oubliez pas de mentionner votre motivation, vos compétences et pourquoi vous êtes un bon candidat !
+                        </div>`;
+                } else if (result.message === "Suivi des candidatures") {
+                    chatContainer.innerHTML += `
+                        <div class="message bot">
+                            <img src="R.jpg" alt="Bot">
+                            <strong>Suivi des candidatures :</strong>
+                            Vous pouvez enregistrer les entreprises auxquelles vous avez postulé ici.
+                        </div>`;
+                } else {
+                    chatContainer.innerHTML += `<div class="message bot">${result.message}</div>`;
+                }
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            } catch (error) {
+                chatContainer.innerHTML += `<div class="message bot">Erreur: ${error.message}</div>`;
+                chatContainer.scrollTop = chatContainer.scrollHeight;
             }
         });
-
-        async function sendMessageToAPI(message) {
-            const response = await fetch('/analyze_offer/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ question: message })
-            });
-            return await response.json();
-        }
-
-        function displayMessage(message, sender) {
-            const chatbox = document.getElementById('chatbox');
-            const messageDiv = document.createElement('div');
-            messageDiv.classList.add('message');
-            messageDiv.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
-            messageDiv.innerHTML = message;
-            chatbox.appendChild(messageDiv);
-            chatbox.scrollTop = chatbox.scrollHeight;
-        }
     </script>
+
 </body>
 </html>
