@@ -1,0 +1,100 @@
+[
+    {
+        "date": "01/02/2025",
+        "thème": "Salon masters, mastères spécialisés, et premier emploi en France et à l'international",
+        "organisateur": "L'Étudiant",
+        "ville": "Lyon",
+        "durée": "1 jour"
+    },
+    {
+        "date": "01/02/2025",
+        "thème": "Salon formations et recrutement en alternance",
+        "organisateur": "L'Étudiant",
+        "ville": "Rennes",
+        "durée": "1 jour"
+    },
+    {
+        "date": "07/02/2025",
+        "thème": "Salon des métiers, de la formation et de l'orientation FOFE",
+        "organisateur": "L'Étudiant",
+        "ville": "Angoulême",
+        "durée": "2 jours"
+    },
+    {
+        "date": "08/02/2025",
+        "thème": "Salon des étudiants Grand Paris Sud",
+        "organisateur": "L'Étudiant",
+        "ville": "Savigny-le-Temple",
+        "durée": "1 jour"
+    },
+    {
+        "date": "08/02/2025",
+        "thème": "Salon des masters 1 et 2, mastères spécialisés & MBA",
+        "organisateur": "Studyrama",
+        "ville": "Paris",
+        "durée": "1 jour"
+    },
+    {
+        "date": "08/02/2025",
+        "thème": "Salon des études supérieures et de l'alternance",
+        "organisateur": "Studyrama",
+        "ville": "Toulouse",
+        "durée": "1 jour"
+    },
+    {
+        "date": "08/02/2025",
+        "thème": "Salon des études supérieures et de l'alternance",
+        "organisateur": "Studyrama",
+        "ville": "Lyon",
+        "durée": "1 jour"
+    },
+    {
+        "date": "08/02/2025",
+        "thème": "Salon des études supérieures et de l'alternance",
+        "organisateur": "Studyrama",
+        "ville": "Montpellier",
+        "durée": "1 jour"
+    },
+    {
+        "date": "08/02/2025",
+        "thème": "Salon de la poursuite d'études et masters",
+        "organisateur": "Studyrama",
+        "ville": "Lyon",
+        "durée": "1 jour"
+    },
+    {
+        "date": "08/02/2025",
+        "thème": "Salon de la poursuite d'études et masters",
+        "organisateur": "Studyrama",
+        "ville": "Montpellier",
+        "durée": "1 jour"
+    },
+    {
+        "date": "08/02/2025",
+        "thème": "Salon de la poursuite d'études et masters",
+        "organisateur": "Studyrama",
+        "ville": "Toulouse",
+        "durée": "1 jour"
+    },
+    {
+        "date": "08/02/2025",
+        "thème": "Forum des masters",
+        "organisateur": "Studyrama",
+        "ville": "Bordeaux",
+        "durée": "1 jour"
+    },
+    {
+        "date": "08/02/2025",
+        "thème": "Forum des formations du numérique",
+        "organisateur": "Studyrama",
+        "ville": "Bordeaux",
+        "durée": "1 jour"
+    },
+    {
+        "date": "08/02/2025",
+        "thème": "Forum des études supérieures et de l'alternance",
+        "organisateur": "Studyrama",
+        "ville": "Bordeaux",
+        "durée": "1 jour"
+    }
+]
