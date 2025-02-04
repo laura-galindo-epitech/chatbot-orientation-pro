@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -16,6 +15,7 @@
             align-items: center;
             height: 100vh;
             flex-direction: column;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         h1 {
@@ -24,6 +24,7 @@
             font-size: 2.5em;
             margin-top: 30px;
             font-weight: 600;
+            transition: color 0.3s ease;
         }
 
         .welcome-message {
@@ -32,6 +33,7 @@
             font-size: 1.2em;
             margin-left: 25px;
             margin-bottom: 20px;
+            transition: color 0.3s ease;
         }
 
         .chat-container {
@@ -44,8 +46,9 @@
             height: 400px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
             overflow-y: auto;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .message {
@@ -61,6 +64,7 @@
             padding: 12px 18px;
             margin-right: 15px;
             font-size: 1.1em;
+            transition: background-color 0.3s ease;
         }
 
         .message.user {
@@ -70,6 +74,8 @@
             padding: 12px 18px;
             margin-left: 15px;
             font-size: 1.1em;
+            align-self: flex-start;
+            transition: background-color 0.3s ease;
         }
 
         .message img {
@@ -83,6 +89,8 @@
             display: flex;
             justify-content: space-between;
             margin-top: 15px;
+            width: 100%;
+            max-width: 700px;
         }
 
         input[type="text"] {
@@ -92,7 +100,7 @@
             border-radius: 50px;
             font-size: 1.2em;
             outline: none;
-            transition: border 0.3s ease;
+            transition: border 0.3s ease, background-color 0.3s ease;
         }
 
         input[type="text"]:focus {
@@ -130,9 +138,83 @@
             margin-right: 10px;
         }
 
+        /* Mode sombre */
+        body.dark-mode {
+            background-color: #121212;
+            color: black;
+        }
+
+        h1.dark-mode, .welcome-message.dark-mode {
+            color: #b3b3b3;
+        }
+
+        .chat-container.dark-mode {
+            background-color: #333;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .message.bot.dark-mode {
+            background-color: #444;
+            color: #808080; /* Gris pour la réponse du bot */
+        }
+
+        .message.user.dark-mode {
+            background-color: #8a5bc7;
+        }
+
+        /* Nouvelle couleur pour la réponse en mode sombre */
+        .message.bot.dark-mode p {
+            color: #808080; /* Réponse en gris */
+        }
+
+        form.dark-mode {
+            background-color: #444;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input[type="text"].dark-mode {
+            background-color: #555;
+            border: 2px solid #444;
+            color: #e0e0e0;
+        }
+
+        input[type="text"].dark-mode:focus {
+            border: 2px solid #8a5bc7;
+        }
+
+        button.dark-mode {
+            background-color: #8a5bc7;
+        }
+
+        button.dark-mode:hover {
+            background-color: #7c4a98;
+        }
+
+        /* Switch button */
+        .switch-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #6a4c9c;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .switch-btn:hover {
+            background-color: #5a3b8b;
+        }
+
     </style>
 </head>
 <body>
+
+    <button class="switch-btn" id="switchButton">Mode Sombre</button>
 
     <h1>Bienvenue sur CrystalBot</h1>
     <div class="welcome-message">
@@ -151,72 +233,60 @@
     <div id="response" class="loading"></div>
 
     <script>
-        const form = document.getElementById('questionForm');
-        const chatContainer = document.getElementById('chatContainer');
-        const responseDiv = document.getElementById('response');
+        const switchButton = document.getElementById('switchButton');
+        let isDarkMode = false;
 
-        form.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const question = document.getElementById('question').value;
-
-            // Afficher le message de l'utilisateur
-            chatContainer.innerHTML += `
-                <div class="message user">
-                    <img src="R.jpg" alt="User">
-                    ${question}
-                </div>`;
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-
-            responseDiv.innerHTML = '<div class="typing-indicator">Le chatbot est en train de réfléchir...</div>';
-
-            try {
-                const response = await fetch('/analyze_offer/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ question })
-                });
-
-                if (!response.ok) {
-                    throw new Error('Erreur lors de la récupération des données');
-                }
-
-                const result = await response.json();
-                responseDiv.innerHTML = '';
-
-                if (result.results) {
-                    result.results.forEach(item => {
-                        chatContainer.innerHTML += `
-                            <div class="message bot">
-                                <img src="R.jpg" alt="Bot">
-                                <strong>${item['libellé métier']}</strong>: ${item.description}
-                            </div>`;
-                    });
-                } else if (result.message === "Aide à la rédaction") {
-                    chatContainer.innerHTML += `
-                        <div class="message bot">
-                            <img src="R.jpg" alt="Bot">
-                            <strong>Conseils pour votre lettre de motivation :</strong>
-                            N'oubliez pas de mentionner votre motivation, vos compétences et pourquoi vous êtes un bon candidat !
-                        </div>`;
-                } else if (result.message === "Suivi des candidatures") {
-                    chatContainer.innerHTML += `
-                        <div class="message bot">
-                            <img src="R.jpg" alt="Bot">
-                            <strong>Suivi des candidatures :</strong>
-                            Vous pouvez enregistrer les entreprises auxquelles vous avez postulé ici.
-                        </div>`;
-                } else {
-                    chatContainer.innerHTML += `<div class="message bot">${result.message}</div>`;
-                }
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            } catch (error) {
-                chatContainer.innerHTML += `<div class="message bot">Erreur: ${error.message}</div>`;
-                chatContainer.scrollTop = chatContainer.scrollHeight;
+        // Fonction pour changer de mode
+        switchButton.addEventListener('click', () => {
+            isDarkMode = !isDarkMode;
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+                document.querySelectorAll('.chat-container').forEach(chat => chat.classList.add('dark-mode'));
+                document.querySelectorAll('form').forEach(form => form.classList.add('dark-mode'));
+                document.querySelectorAll('input[type="text"]').forEach(input => input.classList.add('dark-mode'));
+                document.querySelectorAll('button').forEach(button => button.classList.add('dark-mode'));
+                switchButton.textContent = 'Mode Clair';
+            } else {
+                document.body.classList.remove('dark-mode');
+                document.querySelectorAll('.chat-container').forEach(chat => chat.classList.remove('dark-mode'));
+                document.querySelectorAll('form').forEach(form => form.classList.remove('dark-mode'));
+                document.querySelectorAll('input[type="text"]').forEach(input => input.classList.remove('dark-mode'));
+                document.querySelectorAll('button').forEach(button => button.classList.remove('dark-mode'));
+                switchButton.textContent = 'Mode Sombre';
             }
         });
+
+        // Fonction pour ajouter la question au chat
+        const form = document.getElementById('questionForm');
+        const chatContainer = document.getElementById('chatContainer');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const question = document.getElementById('question').value;
+            if (question.trim() === '') return;
+            addMessage(question, 'user');
+            document.getElementById('question').value = ''; // Clear the input
+            simulateBotResponse(question); // Simulate a bot response
+        });
+
+        // Fonction pour afficher la réponse du bot
+        function addMessage(text, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', sender);
+            messageElement.textContent = text;
+            chatContainer.appendChild(messageElement);
+            chatContainer.scrollTop = chatContainer.scrollHeight; // Scroll to bottom
+        }
+
+        // Simuler la réponse du bot
+        function simulateBotResponse(question) {
+            const botResponse = "Je suis en train d'analyser ta question: " + question;
+            setTimeout(() => {
+                addMessage(botResponse, 'bot');
+            }, 1000);
+        }
     </script>
 
 </body>
 </html>
+
