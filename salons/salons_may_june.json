@@ -1,0 +1,107 @@
+[
+    {
+        "date": "07/09/2024",
+        "thème": "Salon de rentrée",
+        "organisateur": "L'Étudiant",
+        "ville": "Paris",
+        "durée": "1 jour"
+    },
+    {
+        "date": "21/09/2024",
+        "thème": "Salon des parents",
+        "organisateur": "Studyrama",
+        "ville": "Paris",
+        "durée": "1 jour"
+    },
+    {
+        "date": "21/09/2024",
+        "thème": "Salon des 1ères et Terminales",
+        "organisateur": "Studyrama",
+        "ville": "Paris",
+        "durée": "1 jour"
+    },
+    {
+        "date": "27/09/2024",
+        "thème": "Masters français et internationaux",
+        "organisateur": "Access Masters",
+        "ville": "Paris",
+        "durée": "1 jour"
+    },
+    {
+        "date": "28/09/2024",
+        "thème": "MBA français et internationaux",
+        "organisateur": "Access MBA",
+        "ville": "Paris",
+        "durée": "1 jour"
+    },
+    {
+        "date": "28/09/2024",
+        "thème": "Salon de l'Étudiant",
+        "organisateur": "L'Étudiant",
+        "ville": "Colmar",
+        "durée": "1 jour"
+    },
+    {
+        "date": "28/09/2024",
+        "thème": "Salon de l'Étudiant",
+        "organisateur": "L'Étudiant",
+        "ville": "Reims",
+        "durée": "1 jour"
+    },
+    {
+        "date": "28/09/2024",
+        "thème": "Salon des formations artistiques, de la mode et du design",
+        "organisateur": "Studyrama",
+        "ville": "Nantes",
+        "durée": "1 jour"
+    },
+    {
+        "date": "28/09/2024",
+        "thème": "Salon des grandes écoles",
+        "organisateur": "Studyrama",
+        "ville": "Montpellier",
+        "durée": "1 jour"
+    },
+    {
+        "date": "28/09/2024",
+        "thème": "Salon des grandes écoles",
+        "organisateur": "Studyrama",
+        "ville": "Nantes",
+        "durée": "1 jour"
+    },
+    {
+        "date": "Date",
+        "thème": "Thème",
+        "organisateur": "Organisateur",
+        "ville": "Ville",
+        "durée": "Durée"
+    },
+    {
+        "date": "Mai",
+        "thème": "Hauts-de-Seine Digital Games",
+        "organisateur": "Département des Hauts-de-Seine",
+        "ville": "Paris",
+        "durée": "1 jour"
+    },
+    {
+        "date": "21/06/2025",
+        "thème": "Salon Cap sur la rentrée",
+        "organisateur": "L'Étudiant",
+        "ville": "Paris",
+        "durée": "1 jour"
+    },
+    {
+        "date": "21/06/2025",
+        "thème": "Salon Sup'Alternance et Apprentissage",
+        "organisateur": "Studyrama",
+        "ville": "Paris",
+        "durée": "1 jour"
+    },
+    {
+        "date": "21/06/2025",
+        "thème": "Salon des études supérieures - Où s'inscrire encore ?",
+        "organisateur": "Studyrama",
+        "ville": "Paris",
+        "durée": "1 jour"
+    }
+]
