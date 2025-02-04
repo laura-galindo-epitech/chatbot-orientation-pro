@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrystalBot</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #6a4c9c;
+            text-align: center;
+            font-size: 2.5em;
+            margin-top: 30px;
+            font-weight: 600;
+        }
+
+        .welcome-message {
+            text-align: left;
+            color: #6a4c9c;
+            font-size: 1.2em;
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 700px;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+        }
+
+        .message {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            max-width: 80%;
+        }
+
+        .message.bot {
+            background-color: #e8e8e8;
+            border-radius: 20px;
+            padding: 12px 18px;
+            margin-right: 15px;
+            font-size: 1.1em;
+        }
+
+        .message.user {
+            background-color: #6a4c9c;
+            color: white;
+            border-radius: 20px;
+            padding: 12px 18px;
+            margin-left: 15px;
+            font-size: 1.1em;
+        }
+
+        .message img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+        }
+
+        form {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 50px;
+            font-size: 1.2em;
+            outline: none;
+            transition: border 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border: 2px solid #6a4c9c;
+        }
+
+        button {
+            padding: 15px 25px;
+            background-color: #6a4c9c;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #5a3b8b;
+        }
+
+        .loading {
+            text-align: center;
+            font-size: 1.2em;
+            color: #6a4c9c;
+        }
+
+        .typing-indicator {
+            font-size: 1.1em;
+            color: #6a4c9c;
+            font-style: italic;
+        }
+
+        .message.user img {
+            margin-right: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Bienvenue sur CrystalBot</h1>
+    <div class="welcome-message">
+        Dis-moi comment je peux t’aider à voir ton avenir professionnel
+    </div>
+
+    <div class="chat-container" id="chatContainer">
+        <!-- Chat messages will be appended here -->
+    </div>
+
+    <form id="questionForm">
+        <input type="text" id="question" name="question" placeholder="Posez une question..." required>
+        <button type="submit">Envoyer</button>
+    </form>
+
+    <div id="response" class="loading"></div>
+
+    <script>
+        const form = document.getElementById('questionForm');
+        const chatContainer = document.getElementById('chatContainer');
+        const responseDiv = document.getElementById('response');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const question = document.getElementById('question').value;
+
+            // Afficher le message de l'utilisateur
+            chatContainer.innerHTML += `
+                <div class="message user">
+                    <img src="R.jpg" alt="User">
+                    ${question}
+                </div>`;
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            responseDiv.innerHTML = '<div class="typing-indicator">Le chatbot est en train de réfléchir...</div>';
+
+            try {
+                const response = await fetch('/analyze_offer/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ question })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erreur lors de la récupération des données');
+                }
+
+                const result = await response.json();
+                responseDiv.innerHTML = '';
+
+                if (result.results) {
+                    result.results.forEach(item => {
+                        chatContainer.innerHTML += `
+                            <div class="message bot">
+                                <img src="R.jpg" alt="Bot">
+                                <strong>${item['libellé métier']}</strong>: ${item.description}
+                            </div>`;
+                    });
+                } else if (result.message === "Aide à la rédaction") {
+                    chatContainer.innerHTML += `
+                        <div class="message bot">
+                            <img src="R.jpg" alt="Bot">
+                            <strong>Conseils pour votre lettre de motivation :</strong>
+                            N'oubliez pas de mentionner votre motivation, vos compétences et pourquoi vous êtes un bon candidat !
+                        </div>`;
+                } else if (result.message === "Suivi des candidatures") {
+                    chatContainer.innerHTML += `
+                        <div class="message bot">
+                            <img src="R.jpg" alt="Bot">
+                            <strong>Suivi des candidatures :</strong>
+                            Vous pouvez enregistrer les entreprises auxquelles vous avez postulé ici.
+                        </div>`;
+                } else {
+                    chatContainer.innerHTML += `<div class="message bot">${result.message}</div>`;
+                }
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            } catch (error) {
+                chatContainer.innerHTML += `<div class="message bot">Erreur: ${error.message}</div>`;
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+        });
+    </script>
+
+</body>
+</html>
