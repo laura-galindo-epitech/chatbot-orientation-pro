@@ -16,7 +16,6 @@ Notre chatbot conseille des personnes sur leur orientation professionnelle, et l
 - Hubert GILLOUARD (HubertGillouard)
 - Viktoriia REPA (Vktrp, Vktrp2)
 
-
 #### Sources
 
 - https://www.data.gouv.fr/fr/
