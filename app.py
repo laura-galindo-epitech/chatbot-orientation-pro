@@ -1,37 +1,37 @@
-from fastapi import FastAPI, Request
-from pydantic import BaseModel
+from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
+from fastapi.middleware.cors import CORSMiddleware
 import json
 
 app = FastAPI()
 
-# Charger les données des métiers à partir du fichier JSON
-with open("ideo_metiers_onisep.json", encoding="utf-8") as f:
-    metiers_data = json.load(f)
+# Ajouter le middleware CORS pour permettre l'accès depuis d'autres origines
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Permet à toutes les origines de se connecter
+    allow_credentials=True,
+    allow_methods=["*"],  # Permet toutes les méthodes (GET, POST, etc.)
+    allow_headers=["*"],  # Permet tous les en-têtes
+)
 
-class Question(BaseModel):
-    question: str
-
-@app.post("/analyze_offer")
-async def analyze_offer(question: Question):
-    question_text = question.question.lower()
-    results = []
-    for metier in metiers_data:
-        # Recherche de mots-clés dans le libellé métier
-        if any(keyword.lower() in metier['libellé métier'].lower() for keyword in question_text.split()):
-            results.append({
-                'libellé métier': metier['libellé métier'],
-                'description': metier.get('domaine/sous-domaine', 'Description non disponible')
-            })
-        # Recherche de mots-clés dans la description (domaine/sous-domaine)
-        elif any(keyword.lower() in metier.get('domaine/sous-domaine', '').lower() for keyword in question_text.split()):
-            results.append({
-                'libellé métier': metier['libellé métier'],
-                'description': metier.get('domaine/sous-domaine', 'Description non disponible')
-            })
-    return {"results": results}
-
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 async def root():
-    with open("index.html", "r", encoding="utf-8") as f:
-        content = f.read()
-    return content
+    try:
+        # Lire le fichier index.html
+        with open("index.html", "r", encoding="utf-8") as f:
+            content = f.read()
+        return content
+    except Exception as e:
+        return {"message": f"Erreur lors de la lecture du fichier index.html: {e}"}
+
+@app.post("/analyze_offer/")
+async def analyze_offer(data: dict):
+    try:
+        # Exemple de logique d'analyse de l'offre, modifiez selon votre besoin
+        question = data.get("question", "")
+        response = {
+            "message": f"Analyse de l'offre pour la question: {question}"
+        }
+        return response
+    except Exception as e:
+        return {"message": f"Erreur dans l'analyse de l'offre: {e}"}
