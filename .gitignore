@@ -1,2 +1,3 @@
 RAG/*.txt
 .DS_Store
+.env
