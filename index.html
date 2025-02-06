@@ -1,292 +1,94 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrystalBot</title>
-    <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chatbot Orientation</title>
+<style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            padding: 20px;
+            background-color: #f9f9f9;
         }
-
-        h1 {
-            color: #6a4c9c;
-            text-align: center;
-            font-size: 2.5em;
-            margin-top: 30px;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .welcome-message {
-            text-align: left;
-            color: #6a4c9c;
-            font-size: 1.2em;
-            margin-left: 25px;
-            margin-bottom: 20px;
-            transition: color 0.3s ease;
-        }
-
         .chat-container {
             width: 100%;
-            max-width: 700px;
-            background-color: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            overflow-y: auto;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .message {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            max-width: 80%;
-        }
-
-        .message.bot {
-            background-color: #e8e8e8;
-            border-radius: 20px;
-            padding: 12px 18px;
-            margin-right: 15px;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease;
-        }
-
-        .message.user {
-            background-color: #6a4c9c;
-            color: white;
-            border-radius: 20px;
-            padding: 12px 18px;
-            margin-left: 15px;
-            font-size: 1.1em;
-            align-self: flex-start;
-            transition: background-color 0.3s ease;
-        }
-
-        .message img {
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            margin-right: 15px;
-        }
-
-        form {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 15px;
-            width: 100%;
-            max-width: 700px;
-        }
-
-        input[type="text"] {
-            width: 80%;
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 50px;
-            font-size: 1.2em;
-            outline: none;
-            transition: border 0.3s ease, background-color 0.3s ease;
-        }
-
-        input[type="text"]:focus {
-            border: 2px solid #6a4c9c;
-        }
-
-        button {
-            padding: 15px 25px;
-            background-color: #6a4c9c;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1.2em;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #5a3b8b;
-        }
-
-        .loading {
-            text-align: center;
-            font-size: 1.2em;
-            color: #6a4c9c;
-        }
-
-        .typing-indicator {
-            font-size: 1.1em;
-            color: #6a4c9c;
-            font-style: italic;
-        }
-
-        .message.user img {
-            margin-right: 10px;
-        }
-
-        /* Mode sombre */
-        body.dark-mode {
-            background-color: #121212;
-            color: black;
-        }
-
-        h1.dark-mode, .welcome-message.dark-mode {
-            color: #b3b3b3;
-        }
-
-        .chat-container.dark-mode {
-            background-color: #333;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .message.bot.dark-mode {
-            background-color: #444;
-            color: #808080; /* Gris pour la réponse du bot */
-        }
-
-        .message.user.dark-mode {
-            background-color: #8a5bc7;
-        }
-
-        /* Nouvelle couleur pour la réponse en mode sombre */
-        .message.bot.dark-mode p {
-            color: #808080; /* Réponse en gris */
-        }
-
-        form.dark-mode {
-            background-color: #444;
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-
-        input[type="text"].dark-mode {
-            background-color: #555;
-            border: 2px solid #444;
-            color: #e0e0e0;
+        .chat-box {
+            height: 400px;
+            overflow-y: scroll;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
         }
-
-        input[type="text"].dark-mode:focus {
-            border: 2px solid #8a5bc7;
+        .chat-input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
         }
-
-        button.dark-mode {
-            background-color: #8a5bc7;
-        }
-
-        button.dark-mode:hover {
-            background-color: #7c4a98;
-        }
-
-        /* Switch button */
-        .switch-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: #6a4c9c;
+        .button {
+            background-color: #4CAF50;
             color: white;
+            padding: 10px;
             border: none;
-            border-radius: 50px;
-            padding: 10px 20px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 1em;
-            transition: background-color 0.3s ease;
+            width: 100%;
         }
-
-        .switch-btn:hover {
-            background-color: #5a3b8b;
-        }
-
-    </style>
+</style>
 </head>
 <body>
-
-    <button class="switch-btn" id="switchButton">Mode Sombre</button>
-
-    <h1>Bienvenue sur CrystalBot</h1>
-    <div class="welcome-message">
-        Dis-moi comment je peux t’aider à voir ton avenir professionnel
-    </div>
-
-    <div class="chat-container" id="chatContainer">
-        <!-- Chat messages will be appended here -->
-    </div>
-
-    <form id="questionForm">
-        <input type="text" id="question" name="question" placeholder="Posez une question..." required>
-        <button type="submit">Envoyer</button>
-    </form>
-
-    <div id="response" class="loading"></div>
-
+<div class="chat-container">
+<div class="chat-box" id="chatBox"></div>
+<textarea class="chat-input" id="userInput" placeholder="Posez votre question..."></textarea>
+<button class="button" onclick="sendMessage()">Envoyer</button>
+</div>
+ 
     <script>
-        const switchButton = document.getElementById('switchButton');
-        let isDarkMode = false;
-
-        // Fonction pour changer de mode
-        switchButton.addEventListener('click', () => {
-            isDarkMode = !isDarkMode;
-            if (isDarkMode) {
-                document.body.classList.add('dark-mode');
-                document.querySelectorAll('.chat-container').forEach(chat => chat.classList.add('dark-mode'));
-                document.querySelectorAll('form').forEach(form => form.classList.add('dark-mode'));
-                document.querySelectorAll('input[type="text"]').forEach(input => input.classList.add('dark-mode'));
-                document.querySelectorAll('button').forEach(button => button.classList.add('dark-mode'));
-                switchButton.textContent = 'Mode Clair';
-            } else {
-                document.body.classList.remove('dark-mode');
-                document.querySelectorAll('.chat-container').forEach(chat => chat.classList.remove('dark-mode'));
-                document.querySelectorAll('form').forEach(form => form.classList.remove('dark-mode'));
-                document.querySelectorAll('input[type="text"]').forEach(input => input.classList.remove('dark-mode'));
-                document.querySelectorAll('button').forEach(button => button.classList.remove('dark-mode'));
-                switchButton.textContent = 'Mode Sombre';
+        async function sendMessage() {
+            const userInput = document.getElementById("userInput").value.trim();
+            if (!userInput) return;
+ 
+            const chatBox = document.getElementById("chatBox");
+            chatBox.innerHTML += `<p><strong>Vous:</strong> ${userInput}</p>`;
+            document.getElementById("userInput").value = '';
+ 
+            try {
+                const response = await fetch("/chat/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ query: userInput })
+                });
+ 
+                if (!response.ok) {
+                    throw new Error("Erreur réseau");
+                }
+ 
+                const data = await response.json();
+                console.log("Réponse du chatbot:", data);
+ 
+                if (data.response) {
+                    chatBox.innerHTML += `<p><strong>Chatbot:</strong> ${data.response}</p>`;
+                } else {
+                    chatBox.innerHTML += `<p><strong>Chatbot:</strong> Une erreur s'est produite.</p>`;
+                }
+ 
+                chatBox.scrollTop = chatBox.scrollHeight;
+            } catch (error) {
+                console.error("Erreur dans sendMessage:", error);
+                chatBox.innerHTML += `<p><strong>Chatbot:</strong> Erreur de connexion.</p>`;
             }
-        });
-
-        // Fonction pour ajouter la question au chat
-        const form = document.getElementById('questionForm');
-        const chatContainer = document.getElementById('chatContainer');
-
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            const question = document.getElementById('question').value;
-            if (question.trim() === '') return;
-            addMessage(question, 'user');
-            document.getElementById('question').value = ''; // Clear the input
-            simulateBotResponse(question); // Simulate a bot response
-        });
-
-        // Fonction pour afficher la réponse du bot
-        function addMessage(text, sender) {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message', sender);
-            messageElement.textContent = text;
-            chatContainer.appendChild(messageElement);
-            chatContainer.scrollTop = chatContainer.scrollHeight; // Scroll to bottom
         }
-
-        // Simuler la réponse du bot
-        function simulateBotResponse(question) {
-            const botResponse = "Je suis en train d'analyser ta question: " + question;
-            setTimeout(() => {
-                addMessage(botResponse, 'bot');
-            }, 1000);
-        }
-    </script>
-
+</script>
 </body>
 </html>
-
