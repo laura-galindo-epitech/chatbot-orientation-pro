@@ -1,3 +1,4 @@
 RAG/*.txt
 .DS_Store
 .env
+RAG/final_chroma_db/
