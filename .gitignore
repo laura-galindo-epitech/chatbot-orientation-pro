@@ -2,3 +2,4 @@ RAG/*.txt
 .DS_Store
 .env
 chroma.sqlite3
+
