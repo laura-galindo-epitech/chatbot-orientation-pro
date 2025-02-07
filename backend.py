@@ -51,7 +51,7 @@ llm = ChatMistralAI(
 embeddings = MistralAIEmbeddings(model="mistral-embed")
 
 # 1️⃣ Connect to the existing ChromaDB instance
-db_path = "./final_chroma_db"
+db_path = "./RAG/final_chroma_db"
 collection_name = "final_vector_store_collection"
 
 client = PersistentClient(path=db_path)
