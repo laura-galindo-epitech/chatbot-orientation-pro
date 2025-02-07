@@ -22,3 +22,7 @@ Notre chatbot conseille des personnes sur leur orientation professionnelle, et l
 - https://data.enseignementsup-recherche.gouv.fr/explore/dataset/fr-esr-parcoursup/information/
 - https://opendata.onisep.fr/
 - https://candidat.francetravail.fr/offres/emploi
+
+#### Livrables
+- La vidéo de démo se trouve dans /VIdéo_rendu
+- La note technique et récapitulative se trouve ici : https://epitechfr-my.sharepoint.com/:w:/g/personal/marine_fruitier_epitech_digital/EYrLXj-ACklIqbCy4IOqoQsBty1l1KDgQxm5Nd6D8xFRLg?e=vukGES
