@@ -1,28 +1,48 @@
+
 #!/usr/bin/env python
 # coding: utf-8
 
-import os
-import json
-import getpass
-import requests
-import chromadb
-from chromadb import PersistentClient
-from langchain.vectorstores import Chroma
-from langchain_mistralai import ChatMistralAI, MistralAIEmbeddings
-from langchain_mistralai.chat_models import ChatMistralAI
-from langgraph.graph import START, MessagesState, StateGraph
-from langchain_core.messages import HumanMessage
-from langgraph.checkpoint.memory import MemorySaver
-from langchain_core.prompts import ChatPromptTemplate, PromptTemplate, PipelinePromptTemplate
-from langchain.chains.combine_documents import create_stuff_documents_chain
-from langchain.chains import create_retrieval_chain
-from langchain import hub
+# # Building a Retrieval Augmented Generation (RAG) Chatbot
 
-# Building a Retrieval Augmented Generation (RAG) Chatbot
+# In[52]:
+
 
 get_ipython().system('pip install --quiet --upgrade langchain-text-splitters langchain-community langgraph')
 get_ipython().system('pip install -qU langchain-mistralai')
 get_ipython().system('pip install -qU langchain-chroma')
+
+
+# ## Setup
+
+# In[55]:
+
+
+import getpass
+import os
+
+os.environ["LANGSMITH_TRACING"] = "true"
+os.environ["LANGSMITH_API_KEY"] = getpass.getpass("Enter API key for Langsmith: ")
+
+
+# ## Components
+
+# In[84]:
+
+
+import getpass
+import os
+
+# Chat model
+
+MODEL_NAME = "mistral-small-latest"
+if "MISTRAL_API_KEY" not in os.environ:
+    os.environ["MISTRAL_API_KEY"] = getpass.getpass("Enter API key for Mistral API: ")
+
+
+# In[86]:
+
+
+from langchain_mistralai import ChatMistralAI, MistralAIEmbeddings
 
 # Chat model initialization
 llm = ChatMistralAI(
@@ -35,18 +55,29 @@ llm = ChatMistralAI(
 # Embeddings model
 embeddings = MistralAIEmbeddings(model="mistral-embed")
 
+
+# In[87]:
+
+
+import chromadb
+from chromadb import PersistentClient
+from langchain.vectorstores import Chroma
+
 # 1️⃣ Connect to the existing ChromaDB instance
 db_path = "./final_chroma_db"
 collection_name = "final_vector_store_collection"
 
 client = PersistentClient(path=db_path)
 collection = client.get_or_create_collection(name=collection_name)
+print(f"✅ Connected to ChromaDB collection '{collection_name}' in '{db_path}'.")
 
 # 2️⃣ Load stored embeddings from ChromaDB
 stored_data = collection.get()
 
 # 3️⃣ Check how many embeddings are loaded
 num_loaded = len(stored_data["ids"])
+print(f"🔍 Loaded {num_loaded} embeddings from ChromaDB.")
+
 
 # 🔄 Recharger le vector store depuis la base de données ChromaDB
 vector_store = Chroma(
@@ -55,7 +86,40 @@ vector_store = Chroma(
     embedding_function=embeddings
 )
 
-# LLM Prompt-Engineering
+# ✅ Vérification du nombre de documents chargés
+num_loaded = vector_store._collection.count()
+print(f"🔍 Vector store loaded with {num_loaded} documents.")
+
+
+# ## LLM Prompt-Engineering
+
+# In this part, we implement an advanced AI chatbot using LangChain and LangGraph.
+# It integrates :
+# - RAG (Retrieval-Augmented Generation) with source display
+# - Streaming responses for enhanced user experience
+# - Conversational memory for tracking interactions
+
+# In[90]:
+
+
+#  Importation des bibliothèques
+import os
+import json
+import getpass
+import requests
+
+from langchain_mistralai.chat_models import ChatMistralAI
+from langgraph.graph import START, MessagesState, StateGraph
+from langchain_core.messages import HumanMessage
+from langgraph.checkpoint.memory import MemorySaver
+from langchain_core.prompts import ChatPromptTemplate, PromptTemplate
+from langchain_core.prompts import PipelinePromptTemplate
+
+
+# ### Prompt definition
+
+# In[93]:
+
 
 prompt_principal = ChatPromptTemplate.from_template(
     """
@@ -102,6 +166,7 @@ topic_prompt = PromptTemplate.from_template(
     """
 )
 
+
 intent_prompt = PromptTemplate.from_template(
     """
     Analyse la question suivante et identifie l’intention principale de l’utilisateur :
@@ -119,6 +184,7 @@ intent_prompt = PromptTemplate.from_template(
     Intention détectée :
     """
 )
+
 
 chatbot_prompt = PromptTemplate.from_template(
     """
@@ -170,6 +236,7 @@ chatbot_prompt = PromptTemplate.from_template(
     """
 )
 
+
 closing_prompt = PromptTemplate.from_template(
     """
     J’espère que cette réponse **t’a aidé à y voir plus clair !** 🔮  
@@ -177,8 +244,13 @@ closing_prompt = PromptTemplate.from_template(
     """
 )
 
-# Setting up conversation memory
 
+# ### Setting up conversation memory
+
+# In[96]:
+
+
+# Mise en place de la mémoire conversationnelle
 memory = MemorySaver()
 workflow = StateGraph(state_schema=MessagesState)
 
@@ -191,7 +263,17 @@ workflow.add_edge(START, "model")
 workflow.add_node("model", call_model)
 chatbot = workflow.compile(checkpointer=memory)
 
-# Creating the retrieval chain with LangChain
+
+# ## Creating the retrieval chain with LangChain
+# 
+# Creating a retrieval chain that, based on a user question, will retrieve relevant Documents from Chroma and provide them in context to the MistralAI language model to generate an informed answer
+
+# In[99]:
+
+
+from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain.chains import create_retrieval_chain
+from langchain import hub
 
 def build_retrieval_chain(vector_store, llm, k=5):
     """
@@ -229,7 +311,11 @@ def retrieve_and_format_context(user_query, vector_store, llm):
 
     return formatted_context, sources
 
-# Building a full ChatBot response
+
+# # Building a full ChatBot response
+
+# In[102]:
+
 
 def generate_response(user_query, vector_store, llm):
     """Generate an optimized response with CrystalBot and keep the history"""
@@ -357,3 +443,123 @@ def refine_response(chatbot_output, user_query, llm):
     refined_response = llm.invoke([HumanMessage(content=refinement_prompt)]).content
 
     return refined_response
+
+
+# ## Testing the ChatBot
+
+# In[117]:
+
+
+user_query = "Quels métiers sont accessibles après un diplôme en informatique ?"
+
+# Tester la récupération des documents depuis ChromaDB
+context, sources = retrieve_and_format_context(user_query, vector_store, llm)
+
+print("🔹 Contexte récupéré :")
+print(context)
+print("\n🔹 Sources associées :")
+print(sources)
+
+
+# In[123]:
+
+
+# Tester la réponse initiale générée par le chatbot
+initial_result = generate_response(user_query, vector_store, llm)
+
+# 🔥 Appel de refine_response pour améliorer la réponse
+refined_result = refine_response(initial_result["response"], user_query, llm)
+
+print("\n🔹 Réponse affinée du chatbot :")
+print(refined_result)
+
+
+# In[107]:
+
+
+user_query = "hello, quels métiers conseilles-tu à quelqu'un qui aime le contact avec les gens ?"
+
+# Tester la récupération des documents depuis ChromaDB
+context, sources = retrieve_and_format_context(user_query, vector_store, llm)
+
+# Tester la réponse initiale générée par le chatbot
+initial_result = generate_response(user_query, vector_store, llm)
+
+# 🔥 Appel de refine_response pour améliorer la réponse
+refined_result = refine_response(initial_result["response"], user_query, llm)
+
+print(refined_result)
+
+
+# In[109]:
+
+
+user_query = "Je souhaite intégrer une CPGE scientifique. Peux-tu m'aider à rédiger ma lettre de motivation ?"
+
+# Tester la récupération des documents depuis ChromaDB
+context, sources = retrieve_and_format_context(user_query, vector_store, llm)
+
+# Tester la réponse initiale générée par le chatbot
+initial_result = generate_response(user_query, vector_store, llm)
+
+# 🔥 Appel de refine_response pour améliorer la réponse
+refined_result = refine_response(initial_result["response"], user_query, llm)
+
+print(refined_result)
+
+
+# In[113]:
+
+
+sources
+
+
+
+# Importation de FastAPI pour exposer l'API du chatbot
+from fastapi import FastAPI, Response
+from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
+import os
+
+# Initialisation de l'application FastAPI
+app = FastAPI()
+
+# Définition de l'URL autorisée pour les requêtes CORS en production (Render)
+ALLOWED_ORIGINS = ["https://crystalbot.onrender.com"]
+
+# Gestion des CORS pour permettre les requêtes du frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=ALLOWED_ORIGINS,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Définition du modèle pour recevoir les requêtes utilisateur
+class UserQuery(BaseModel):
+    query: str
+
+# Endpoint API pour interroger le chatbot RAG
+@app.post("/chat/")
+async def ask_rag(payload: UserQuery):
+    response_data = generate_response(payload.query, vector_store, llm)
+    return {
+        "response": response_data["response"],
+        "sources": response_data["sources"]
+    }
+
+# Endpoint pour servir l'interface utilisateur
+@app.get("/")
+def serve_index():
+    try:
+        with open("index.html", "r", encoding="utf-8") as file:
+            html_content = file.read()
+        return Response(content=html_content, media_type="text/html")
+    except FileNotFoundError:
+        return Response(content="Erreur : index.html introuvable", media_type="text/plain", status_code=404)
+
+# Vérification pour exécuter le serveur uniquement en mode standalone
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
